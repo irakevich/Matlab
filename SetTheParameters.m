@@ -15,7 +15,7 @@ generate=1; %1 -czy generowac SheduleLeague czy 0 -u¿yc sta³ego grafiku
 Z=18;%Z - number of teams
 R=18;%R - number of referees
 Lr=zeros(R,1);
-Lr(1,1)=8;Lr(3)=10;Lr(9)=9;
+Lr(1,1)=8;Lr(3)=10;Lr(9)=3;
 S=4; %odleglosc (w kolejkach) miedzy dwoma meczami  
 Oa=1; 
 Oh=1;
