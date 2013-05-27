@@ -17,6 +17,7 @@ theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 
 krok=0;
+disp('Jestem fajnym algorytmem');
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
