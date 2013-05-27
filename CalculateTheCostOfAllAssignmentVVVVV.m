@@ -37,5 +37,5 @@ V3=0;
     %disp(sprintf('V5%g',V5));
     V = V1+V2+V3+V4+V5;
     
-    disp(sprintf('V=%g %g %g %g %g',V1,V2,V3,V4,V5));
+    %disp(sprintf('V=%g %g %g %g %g',V1,V2,V3,V4,V5));
  

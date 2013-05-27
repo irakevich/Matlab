@@ -17,12 +17,12 @@ theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 
 krok=0;
-disp('Jestem fajnym algorytmem');
+%disp('Jestem fajnym algorytmem');
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
-    disp('krok sn=');disp(krok);
-    V
+  %  disp('krok sn=');disp(krok);
+  %  V
     [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz);
     V1w=find(sum(Vwr,2)~=0);
     %disp(length(V1w));
@@ -60,9 +60,8 @@ while(theEnd~=1)&&(V~=0)
             end
         end
     end
-    disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
-   % cWRR
-     if min(min(min(cWRR))) <V
+   % disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
+    if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
         wn=wwn(1);
@@ -84,11 +83,11 @@ while(theEnd~=1)&&(V~=0)
         [Vhm,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,0);%SN==0
         if Vhm<V 
             V=Vhm;
-            CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);           
+          %  CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);           
         else    
             theEnd=1;
         end;
     end;    
 
-    disp(sprintf('Vend sn  %g',V)); 
+   % disp(sprintf('Vend sn  %g',V)); 
 end;%while

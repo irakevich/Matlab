@@ -1,5 +1,6 @@
 glpkmex-2.11-src/
 tomlab/
+*.asv
 
 #################
 ## Eclipse

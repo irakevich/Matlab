@@ -21,8 +21,8 @@ krok=0;
 while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
-    disp('krok general=');disp(krok);
-    V
+   % disp('krok general=');disp(krok);
+   % V
     
     for w=1:W
         for r=1:R
@@ -54,7 +54,7 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
             end
         end
     end
-    disp('Vnew');disp(min(min(min(cWRR))));
+   % disp('Vnew');disp(min(min(min(cWRR))));
    % cWRR
      if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
@@ -77,6 +77,6 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
-disp(sprintf('Vend General %g %g',V, SN)); 
+%disp(sprintf('Vend General %g %g',V, SN)); 
 
 end;%while
