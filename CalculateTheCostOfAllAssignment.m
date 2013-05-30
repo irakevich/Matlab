@@ -7,6 +7,7 @@ global Oh
 global S
 global W
 global R
+global C6wr
 
  % -- V1
              
@@ -31,7 +32,10 @@ global R
  % --V5
     V5=sum(sum(sum( max( Xwgr(1:W/2,:,:)+Xwgr(W/2+1:W,:,:)-1,0),1),2),3);
     %disp(sprintf('V5%g',V5));
-    V = V1+V2+V3+V4+V5;
+ % --V6
+    V6=0;
+    V6=sum(sum(squeeze(sum(Xwgr,2)).*C6wr,1),2)*7000; 
+    V = V1+V2+V3+V4+V5+V6;
     
     %disp(sprintf('V=%g %g %g %g %g',V1,V2,V3,V4,V5));
  

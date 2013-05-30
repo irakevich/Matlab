@@ -1,24 +1,33 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhood(Xwgr,Ewrz,HEwrz,V)
+function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhoodCupAndNot(Xwgr,Ewrz,HEwrz,V,cup)
 
 
 global R
 global W
 
 
+
 M=100000;
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
+wf=1; % % zaczynamy od kolejki [wf:W. Zak³adamy ze od [1:wf)=? meczy sie odby³y ;
 
-disp('----HeuristicMethodSpecialNeighbourhood----');
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;
-    krok=krok+1; disp('krok sn= %g', krok);
+    krok=krok+1;disp(sprintf('krok sn= %g',krok));
     V
-    [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,1); %wf==1
+    CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);    
+
+    if cup==1 
+        if krok==1
+            [wf]=SetPunishment();
+        end;
+    end;
+    
+    [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf); % if wf >1 ==> matrix Vwr=[zeros(wf-1,R);Vwr(wf:W,R)]; 
     [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz);
     disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
-   % cWRR
+    %cWRR
     if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
@@ -37,10 +46,10 @@ while(theEnd~=1)&&(V~=0)
         HEwrz(wn,r1n,:) = tmpHE;
         CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);   %nie jest potrzebne            
      else
-        [Vhm,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,0);%SN==0
+        [Vhm,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodCupAndNot(Xwgr,Ewrz,HEwrz,V,0,wf,0);%SN==0,wf,cup=0
         if Vhm<V 
             V=Vhm;
-            CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);       %nie jest potrzebne          
+            CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz);  %nie jest potrzebne                  
         else    
             theEnd=1;
         end;

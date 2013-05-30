@@ -1,4 +1,4 @@
-function [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz)
+function [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf)
 
 global W
 global R
@@ -6,11 +6,13 @@ global S
 global Oa
 global Oh
 global Lr
+global C6wr
 V1wr=zeros(W,R);
 V2wr=zeros(W,R);
 V3wr=zeros(W,R);
 V4wr=zeros(W,R);
 V5wr=zeros(W,R);
+V6wr=zeros(W,R);
  % -- V1
              
     V1 = 0;
@@ -38,7 +40,7 @@ V5wr=zeros(W,R);
 
 
  % -- V3                
-    V3wrz =max(sum(HEwrz, 1) - Oa, 0);
+    V3wrz =max(sum(HEwrz, 1) - Oh, 0);
     V3rz=squeeze(V3wrz); %sp³aszczyc wynik
     for i=1:W
         HErz=squeeze(HEwrz(i,:,:));
@@ -69,7 +71,14 @@ V5wr=zeros(W,R);
     end;    
     %disp(sprintf('V5 %g %g',V5, V5old));
     
+  % --V6
+   V6wr=squeeze(sum(Xwgr,2)).*C6wr;
+   Vwr=V1wr+V2wr+V3wr+V4wr+V5wr+V6wr;
+   
+   if wf>1
+       pom=zeros(wf-1,R);
+     Vwr=[pom;Vwr(wf:W,1:R)];
+   end;
     
-    Vwr=V1wr+V2wr+V3wr+V4wr+V5wr;
     
     
