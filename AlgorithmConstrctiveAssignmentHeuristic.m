@@ -115,18 +115,21 @@ for w=1:1:W
         vartype = strcat(vartype, 'I');
     end;
     [y,fopt,status,extra]=glpk(c,A,b,y_L,y_U,ctype,vartype,1);
-%        disp(y);
+      
     %Yrg=zeros(R,G);
     Ygr=zeros(G,R);
     p=0;
-    for r=1:1:R
-        for g=1:1:G
-          p=p+1;  
-          %Yrg(r,g)=y(p,1);
-          Ygr(g,r)=y(p,1);
-        end;
-    end;
+   
+   Ygr=reshape(y,G,R);%wstawia kolumnami ...% y=[g1,g2   g1,g2  g1,g2  g1,g2]
+   % for r=1:1:R
+   %     for g=1:1:G
+    %      p=p+1;  
+    %     % Yrg(r,g)=y(p,1);
+     %     Ygr(g,r)=y(p,1);
+      %  end;
+    %end;
 
+     
        % --2.3 Update all variables regarding the current stage
     Xwgr(w,:,:) = Ygr;
     Cwrg(w,:,:)=  Crg;

@@ -1,4 +1,4 @@
-function [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf)
+function [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf,C6wr)
 
 global W
 global R
@@ -6,7 +6,7 @@ global S
 global Oa
 global Oh
 global Lr
-global C6wr
+
 V1wr=zeros(W,R);
 V2wr=zeros(W,R);
 V3wr=zeros(W,R);

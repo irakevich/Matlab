@@ -9,9 +9,9 @@ global Lr
 global Oa
 global Oh
 global S
-
+global M
 global cWRR
-M=100000;
+
 
 theEnd=0;
 
@@ -77,6 +77,6 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
-disp(sprintf('Vend General %g %g',V, SN)); 
+disp(sprintf('Vend General %g',V)); 
 
 end;%while

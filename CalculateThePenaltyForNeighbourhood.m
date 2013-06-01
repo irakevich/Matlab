@@ -1,4 +1,4 @@
-function [cWRR]= CalculateThePenaltyForNeighbourhood(cWRR,Xwgr,Ewrz,HEwrz,wf)
+function [cWRR]= CalculateThePenaltyForNeighbourhood(cWRR,Xwgr,Ewrz,HEwrz,wf,C6wr)
 
 global W
 global R
@@ -17,7 +17,7 @@ global R
                         HEwrz(w,r,:) = HEwrz(w,r1,:);
                         HEwrz(w,r1,:) = tmpHE;
 
-                        [Vv] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz);
+                        [Vv] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr);
                         cWRR(w,r1,r) = Vv;
 
                         Xwgr(w,:,r) = Xwgr(w,:,r1);

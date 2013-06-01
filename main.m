@@ -10,7 +10,6 @@ global Oa
 global Oh
 global S
 global generate
-global C6wr
 global cWRR
 V=-100;
 Vhm=-100;Vhm1=-100;Vhm2=-100;
@@ -24,12 +23,12 @@ end;
 
 SetTheParameters();
 [Hwgz,Awgz]=GenerateMatrixes (); 
-
+C6wr=zeros(W,R);
 
 tic
 [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
 %[XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
-[VOr]=CalculateTheCostOfAllAssignment(XwgrOr,EwrzOr,HEwrzOr)
+[VOr]=CalculateTheCostOfAllAssignment(XwgrOr,EwrzOr,HEwrzOr,C6wr)
 toc
 %tic
 %[Xwgr, Ewrz,HEwrz,Cwgr,Cwrg]=Copy_of_AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
@@ -42,9 +41,9 @@ toc
 %tic
 [Vhm,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethod(XwgrOr,EwrzOr,HEwrzOr,VOr,2);%SN=2
 C6wr=zeros(W,R);
-[Vhm1,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCup(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,0);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
+[Vhm1,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCup(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,1);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
 C6wr=zeros(W,R);
-[Vhm2,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCupAndNot(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,0);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
+[Vhm2,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCupAndNot(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,1);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
 %toc
 disp('--------------------------------------------------------------');
 disp('--------------------------------------------------------------');

@@ -1,4 +1,4 @@
-function [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz)
+function [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz,C6wr)
 
 global R
 
@@ -22,7 +22,7 @@ V1w=find(sum(Vwr,2)~=0);  %disp(sprintf('length(V1w) %g',length(V1w)));
                         HEwrz(w,r,:) = HEwrz(w,r1,:);
                         HEwrz(w,r1,:) = tmpHE;
 
-                        [Vnew] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz);
+                        [Vnew] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr);
                         cWRR(w,r1,r) = Vnew;
 
                         Xwgr(w,:,r) = Xwgr(w,:,r1);

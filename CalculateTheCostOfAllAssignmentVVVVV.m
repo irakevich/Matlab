@@ -1,4 +1,4 @@
- function CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz)
+ function CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr)
  
  
 global Lr
@@ -7,7 +7,7 @@ global Oh
 global S
 global W
 global R
-global C6wr
+
 
  % -- V1
     V1 = 0;
@@ -35,7 +35,7 @@ global C6wr
     
  % --V6
     V6=0;
-    V6=sum(sum(squeeze(sum(Xwgr,2)).*C6wr,1),2)*7000;    
+    V6=sum(sum(squeeze(sum(Xwgr,2)).*C6wr,1),2)*1000;    
   
     
     

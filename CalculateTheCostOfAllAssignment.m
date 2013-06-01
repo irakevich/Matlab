@@ -1,4 +1,4 @@
-    function [V]=CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz)
+    function [V]=CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr)
        
 
 global Lr
@@ -7,7 +7,7 @@ global Oh
 global S
 global W
 global R
-global C6wr
+
 
  % -- V1
              
@@ -34,7 +34,7 @@ global C6wr
     %disp(sprintf('V5%g',V5));
  % --V6
     V6=0;
-    V6=sum(sum(squeeze(sum(Xwgr,2)).*C6wr,1),2)*7000; 
+    V6=sum(sum(squeeze(sum(Xwgr,2)).*C6wr *1000,1),2); 
     V = V1+V2+V3+V4+V5+V6;
     
     %disp(sprintf('V=%g %g %g %g %g',V1,V2,V3,V4,V5));

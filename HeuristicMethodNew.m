@@ -1,8 +1,17 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodCupAndNot(Xwgr,Ewrz,HEwrz,V,SN,wf,cup,C6wr)
+function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodNew(Xwgr,Ewrz,HEwrz,V,SN,wf,C6wr)
 
+global Z
 global R
 global W
+global G
+global VCombination;
+global Lr
+global Oa
+global Oh
+global S
 global M
+
+
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
@@ -12,15 +21,11 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
     krok=krok+1;
     disp(sprintf('krok general= %g',krok));
     V
-    %CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr);  
-    if SN>1 && (cup==1)  % SN>1 -> wywo³alismy HeuristicMethod jako osobna metode
-        if krok==1
-        [wf,C6wr]=SetPunishment(C6wr);
-        end;
-    end;    
-    [cWRR]= CalculateThePenaltyForNeighbourhood(cWRR,Xwgr,Ewrz,HEwrz,wf,C6wr);
+    CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr);  
+    [cWRR]= CalculateThePenaltyForNeighbourhood(cWRR,Xwgr,Ewrz,HEwrz,wf,C6wr);       
+
     disp('Vnew');disp(min(min(min(cWRR))));
-    %cWRR
+   % cWRR
      if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
@@ -37,7 +42,7 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         tmpHE = HEwrz(wn,rn,:);
         HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
         HEwrz(wn,r1n,:) = tmpHE;
-                        
+                          
     else
         theEnd=1;
     end;    

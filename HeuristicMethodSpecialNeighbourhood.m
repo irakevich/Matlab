@@ -3,9 +3,7 @@ function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhood(Xwgr,Ewrz
 
 global R
 global W
-
-
-M=100000;
+global M
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
@@ -16,7 +14,7 @@ while(theEnd~=1)&&(V~=0)
     krok=krok+1; disp('krok sn= %g', krok);
     V
     [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,1); %wf==1
-    [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz);
+    [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz,C6wr);
     disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
    % cWRR
     if min(min(min(cWRR))) <V
