@@ -11,13 +11,13 @@ wf=1; % % zaczynamy od kolejki [wf:W. Zak³adamy ze od [1:wf)=? meczy sie odby³y 
 
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;
-    krok=krok+1;disp(sprintf('krok sn= %g',krok));
-    V
+   %-- krok=krok+1;disp(sprintf('krok sn= %g',krok));
+   %--V
     %CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr);    
    
     [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf,C6wr); % if wf >1 ==> matrix Vwr=[zeros(wf-1,R);Vwr(wf:W,R)]; 
     [cWRR]=CalculateThePenaltyForSpecialNeighbourhood(cWRR,Vwr,Xwgr,Ewrz,HEwrz,C6wr);
-    disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
+    %--disp(sprintf('Vnew  %g',min(min(min(cWRR)))));
     %cWRR
     if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
@@ -46,5 +46,5 @@ while(theEnd~=1)&&(V~=0)
         end;
     end;    
 
-    disp(sprintf('Vend sn  %g',V)); 
+   %-- disp(sprintf('Vend sn  %g',V)); 
 end;%while

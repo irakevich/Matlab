@@ -53,5 +53,5 @@ for i=1:length(ww)
     %C6wr(ww(i),:)=floor(2*rand(1,R));%C6wr(ww,:)=[1,0,0,1];
 end;    
 
-C6wr
+
 

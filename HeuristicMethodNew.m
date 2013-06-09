@@ -19,12 +19,12 @@ krok=0;
 while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
-    disp(sprintf('krok general= %g',krok));
-    V
+   % -- disp(sprintf('krok general= %g',krok));
+   % -- V
     CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr);  
     [cWRR]= CalculateThePenaltyForNeighbourhood(cWRR,Xwgr,Ewrz,HEwrz,wf,C6wr);       
 
-    disp('Vnew');disp(min(min(min(cWRR))));
+   %-- disp('Vnew');disp(min(min(min(cWRR))));
    % cWRR
      if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
@@ -47,6 +47,6 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
-disp(sprintf('Vend general %g',V)); 
+%--disp(sprintf('Vend general %g',V)); 
 
 end;%while

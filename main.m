@@ -28,7 +28,7 @@ C6wr=zeros(W,R);
 tic
 [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
 %[XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
-[VOr]=CalculateTheCostOfAllAssignment(XwgrOr,EwrzOr,HEwrzOr,C6wr)
+C6wr=zeros(W,R);[VOr]=CalculateTheCostOfAllAssignment(XwgrOr,EwrzOr,HEwrzOr,C6wr)
 toc
 %tic
 %[Xwgr, Ewrz,HEwrz,Cwgr,Cwrg]=Copy_of_AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
@@ -39,23 +39,18 @@ toc
 
 
 %tic
-[Vhm,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethod(XwgrOr,EwrzOr,HEwrzOr,VOr,2);%SN=2
-C6wr=zeros(W,R);
-[Vhm1,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCup(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,1);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
-C6wr=zeros(W,R);
-[Vhm2,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodCupAndNot(XwgrOr,EwrzOr,HEwrzOr,VOr,2,1,1);%SN=2 %wf=1 <-zaczynamy od kolejki 1,puchar=1
+wf=1;C6wr=zeros(W,R);
+[Vhm,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm]=HeuristicMethodNew(XwgrOr,EwrzOr,HEwrzOr,VOr,2,wf,C6wr);%SN=2
 %toc
 disp('--------------------------------------------------------------');
 disp('--------------------------------------------------------------');
 disp('--------------------------------------------------------------');
 %tic 
-%[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhood(XwgrOr,EwrzOr,HEwrzOr,VOr);  
-%[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhoodCup(XwgrOr,EwrzOr,HEwrzOr,VOr,1); % puchar=1;
-%[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhoodCupAndNot(XwgrOr,EwrzOr,HEwrzOr,VOr,1); % puchar=1;
-
+wf=1;C6wr=zeros(W,R);
+[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhoodNew(XwgrOr,EwrzOr,HEwrzOr,VOr,C6wr);  
 %toc
 
-V
+VOr
 Vhm
-Vhm1
-Vhm2
+V
+

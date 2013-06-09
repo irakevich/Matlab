@@ -39,5 +39,5 @@ global R
   
     
     
-    disp(sprintf('V =%g %g %g %g %g %g',V1,V2,V3,V4,V5,V6));
+   % disp(sprintf('V =%g %g %g %g %g %g',V1,V2,V3,V4,V5,V6));
  
