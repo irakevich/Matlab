@@ -16,11 +16,11 @@ Awgz=zeros(W,G,Z);
 if generate==1
     tic
     i=1;
-    while i~=10
+    while i~=15
         try 
             [Mh,Ma] = ScheduleLeague();
             disp(sprintf('ScheduleLeague =>  %g I => %g ',toc, i));
-            i=10;
+            i=15;
         catch exception
             i=i+1;
         end;   

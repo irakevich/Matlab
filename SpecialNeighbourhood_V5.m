@@ -1,4 +1,4 @@
-function [Vwr]=SpecialNeighbourhood_V5(Xwgr,Ewrz,HEwrz)
+function [Vwr, V1wr,V2wr, V3wr, V4wr, V5wr]=SpecialNeighbourhood_V5(Xwgr,Ewrz,HEwrz)
 
 global W
 global R
@@ -71,6 +71,7 @@ V5wr=zeros(W,R);
     end;    
     %disp(sprintf('V5 %g %g',V5, V5old));
  Vwr=V1wr+V2wr+V3wr+V4wr+V5wr;
+
     
     
     

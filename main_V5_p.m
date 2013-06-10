@@ -1,4 +1,4 @@
-clear all;
+function [cWRR] = main_V5_p (XwgrOr, EwrzOr,HEwrzOr)
 
 global Z
 global R
@@ -10,7 +10,7 @@ global Oa
 global Oh
 global S
 global generate
-global cWRR
+
 
 
 V=-100;
@@ -24,11 +24,11 @@ if exist('glpk','file') ~= 2
 end;
 
 SetTheParameters();
-[Hwgz,Awgz]=GenerateMatrixes (); 
+%[Hwgz,Awgz]=GenerateMatrixes (); 
 
 tic
-  % [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
-    [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
+ %   [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
+    %[XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
     [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr)
 toc
 
@@ -36,7 +36,7 @@ tic
     [Vhm,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm,WRRG]=HeuristicMethod(XwgrOr,EwrzOr,HEwrzOr,VOr,2);%SN=2
     
 toc
-
+cWRR = [];
 tic 
     [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]= HeuristicMethodSpecialNeighbourhood(XwgrOr,EwrzOr,HEwrzOr,VOr);  
     
@@ -45,8 +45,8 @@ toc
 VOr
 Vhm
 CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgrhm,Ewrzhm,HEwrzhm)
-size(WRRG)
+WRRG
 V
 CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz)
-size(WRRS)
+WRRS
 

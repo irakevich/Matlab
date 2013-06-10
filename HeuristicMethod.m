@@ -1,4 +1,4 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,SN)
+function [V,cWRR, Xwgr,Ewrz,HEwrz,WRRG]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,SN)
 
 
 global R
@@ -8,7 +8,7 @@ global M
 
 
 theEnd=0;
-p=1;
+
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 
 krok=0;
@@ -48,17 +48,16 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         end
     end
      disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
-     [wwn,rr1n,rrn]=find3d(min(min(min(cWRR)))==cWRR);
        
     % cWRR
-     if min(min(min(cWRR))) <V
+     if min(min(min(cWRR))) <V 
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
-        p=1;
-         disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
+        WRRG(krok,:)=[wn,r1n,rn];
+        disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
         Xwgr(wn,:,rn) = tmpX;
@@ -68,27 +67,8 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         tmpHE = HEwrz(wn,rn,:);
         HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
         HEwrz(wn,r1n,:) = tmpHE;
-    elseif min(min(min(cWRR))) ==V && p<length(wwn)
-         disp('2 elseif');
-        if p<length(wwn)    
-            p=p+1;
-        p
-        wn=wwn(p);
-        r1n=rr1n(p);
-        rn=rrn(p);
-         disp(sprintf('%g %g %g',wwn(p),rr1n(p),rrn(p)));
-        tmpX = Xwgr(wn,:,r1n);
-        Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
-        Xwgr(wn,:,rn) = tmpX;
-        tmpE = Ewrz(wn,rn,:);
-        Ewrz(wn,rn,:) = Ewrz(wn,r1n,:);
-        Ewrz(wn,r1n,:) = tmpE;
-        tmpHE = HEwrz(wn,rn,:);
-        HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
-        HEwrz(wn,r1n,:) = tmpHE;
-         end;
-    elseif min(min(min(cWRR))) ==V  && p>=length(wwn)  
-        disp('3 elseif');                    
+     else
+                    
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
