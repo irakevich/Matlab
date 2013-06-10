@@ -1,29 +1,22 @@
 function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,SN)
 
-global Z
+
 global R
 global W
-global G
-global VCombination;
-global Lr
-global Oa
-global Oh
-global S
 global M
-global cWRR
+
 
 
 theEnd=0;
-
+p=1;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 
 krok=0;
 while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
-    disp('krok general=');disp(krok);
-    V
-    
+    disp(sprintf('k g %g ',  krok) );
+  
     for w=1:W
         for r=1:R
             
@@ -40,7 +33,7 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
                         HEwrz(w,r,:) = HEwrz(w,r1,:);
                         HEwrz(w,r1,:) = tmpHE;
 
-                        [Vv] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz);
+                        [Vv] = CalculateTheCostOfAllAssignment_V5(Xwgr,Ewrz,HEwrz);
                         cWRR(w,r1,r) = Vv;
 
                         Xwgr(w,:,r) = Xwgr(w,:,r1);
@@ -54,15 +47,18 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
             end
         end
     end
-    disp('Vnew');disp(min(min(min(cWRR))));
-   % cWRR
+     disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
+     [wwn,rr1n,rrn]=find3d(min(min(min(cWRR)))==cWRR);
+       
+    % cWRR
      if min(min(min(cWRR))) <V
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
-
+        p=1;
+         disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
         Xwgr(wn,:,rn) = tmpX;
@@ -72,8 +68,27 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         tmpHE = HEwrz(wn,rn,:);
         HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
         HEwrz(wn,r1n,:) = tmpHE;
-                        
-    else
+    elseif min(min(min(cWRR))) ==V && p<length(wwn)
+         disp('2 elseif');
+        if p<length(wwn)    
+            p=p+1;
+        p
+        wn=wwn(p);
+        r1n=rr1n(p);
+        rn=rrn(p);
+         disp(sprintf('%g %g %g',wwn(p),rr1n(p),rrn(p)));
+        tmpX = Xwgr(wn,:,r1n);
+        Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
+        Xwgr(wn,:,rn) = tmpX;
+        tmpE = Ewrz(wn,rn,:);
+        Ewrz(wn,rn,:) = Ewrz(wn,r1n,:);
+        Ewrz(wn,r1n,:) = tmpE;
+        tmpHE = HEwrz(wn,rn,:);
+        HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
+        HEwrz(wn,r1n,:) = tmpHE;
+         end;
+    elseif min(min(min(cWRR))) ==V  && p>=length(wwn)  
+        disp('3 elseif');                    
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
