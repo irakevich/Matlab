@@ -9,7 +9,7 @@ global Lr
 global Oa
 global Oh
 global S
-global generate
+
 
 
 
@@ -24,7 +24,7 @@ if exist('glpk','file') ~= 2
 end;
 
 SetTheParameters();
-%[Hwgz,Awgz]=GenerateMatrixes (); 
+%[Hwgz,Awgz]=GenerateMatrixes (1); 
 
 tic
  %   [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);

@@ -57,7 +57,6 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         r1n=rr1n(1);
         rn=rrn(1);
         WRRG(krok,:)=[wn,r1n,rn];
-        disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
         Xwgr(wn,:,rn) = tmpX;

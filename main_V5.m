@@ -9,8 +9,7 @@ global Lr
 global Oa
 global Oh
 global S
-global generate
-global cWRR
+
 
 
 V=-100;
@@ -24,12 +23,12 @@ if exist('glpk','file') ~= 2
 end;
 
 SetTheParameters();
-[Hwgz,Awgz]=GenerateMatrixes (); 
+[Hwgz,Awgz]=GenerateMatrixes (1); %generate==1
 
 tic
-  % [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
-    [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
-    [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr)
+   [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
+   % [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
+   [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr);
 toc
 
 tic

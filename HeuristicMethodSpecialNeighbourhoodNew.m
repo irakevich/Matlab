@@ -1,4 +1,4 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhoodNew(Xwgr,Ewrz,HEwrz,V,C6wr)
+function [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]=HeuristicMethodSpecialNeighbourhoodNew(Xwgr,Ewrz,HEwrz,V,wf,C6wr)
 
 
 global R
@@ -7,11 +7,10 @@ global M
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
-wf=1; % % zaczynamy od kolejki [wf:W. Zak³adamy ze od [1:wf)=? meczy sie odby³y ;
 
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;
-   %-- krok=krok+1;disp(sprintf('krok sn= %g',krok));
+    krok=krok+1;disp(sprintf('krok sn= %g',krok));
    %--V
     %CalculateTheCostOfAllAssignmentVVVVV(Xwgr,Ewrz,HEwrz,C6wr);    
    
@@ -25,7 +24,7 @@ while(theEnd~=1)&&(V~=0)
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
-
+        WRRS(krok,:)=[wn,r1n,rn];
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
         Xwgr(wn,:,rn) = tmpX;

@@ -1,4 +1,4 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodNew(Xwgr,Ewrz,HEwrz,V,SN,wf,C6wr)
+function [V,cWRR, Xwgr,Ewrz,HEwrz,WRRG]=HeuristicMethodNew(Xwgr,Ewrz,HEwrz,V,SN,wf,C6wr)
 
 global Z
 global R
@@ -32,7 +32,7 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
-
+        WRRG(krok,:)=[wn,r1n,rn];
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
         Xwgr(wn,:,rn) = tmpX;

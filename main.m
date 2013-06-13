@@ -47,7 +47,7 @@ disp('--------------------------------------------------------------');
 disp('--------------------------------------------------------------');
 %tic 
 wf=1;C6wr=zeros(W,R);
-[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhoodNew(XwgrOr,EwrzOr,HEwrzOr,VOr,C6wr);  
+[V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhoodNew(XwgrOr,EwrzOr,HEwrzOr,VOr,wf,C6wr);  
 %toc
 
 VOr

@@ -1,10 +1,10 @@
-function [Hwgz,Awgz]=GenerateMatrixes ()
+function [Hwgz,Awgz]=GenerateMatrixes (generate)
 
 global Z
 global R
 global W
 global G
-global generate
+
 
 
 HwgzTMP=zeros(W/2,G,Z);

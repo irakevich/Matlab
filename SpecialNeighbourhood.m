@@ -73,12 +73,12 @@ V6wr=zeros(W,R);
     
   % --V6
    V6wr=squeeze(sum(Xwgr,2)).*C6wr;
-   Vwr=V1wr+V2wr+V3wr+V4wr+V5wr+V6wr;
+   Vwr=V1wr+V2wr+V3wr+V4wr+V5wr+V6wr
    
    if wf>1
        pom=zeros(wf-1,R);
      Vwr=[pom;Vwr(wf:W,1:R)];
    end;
     
-    
+   Vwr 
     

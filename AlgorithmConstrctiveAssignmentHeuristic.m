@@ -97,14 +97,14 @@ for w=1:1:W
     end
 
     % -- 2.2 Find an optimal assignment for the current stage 
-    [c, y_L, y_U, b_L, b_U, a, sos1] = abc2gap( Arg', Br, Crg', true);
+ %   [c, y_L, y_U, b_L, b_U, a, sos1] = abc2gap( Arg', Br, Crg', true);
+    [c, y_L, y_U, b_L, b_U, a] = superTomLab(Crg);
     b_L(isinf(b_L))=0;
     b_U(isinf(b_U))=0;
     % min f'*y    subject to:   A*y <= b         
     A = [a; -a];
     b = [b_U; -b_L];
-%        disp(full(A));
-%        disp(full(b));
+   % disp(full(A));  disp(full(b));pause
     %%%%%%[y, fVal]  = linprog(c, A, b, [], [], y_L, y_U);
     ctype = '';
     for j=1:1:(R+G)*2
