@@ -1,4 +1,4 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhoodCupAndNot(Xwgr,Ewrz,HEwrz,V,cup,C6wr)
+function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhoodCupAndNot(Xwgr,Ewrz,HEwrz,V,cup,wf,C6wr)
 
 
 global R
@@ -7,7 +7,7 @@ global M
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
-wf=1; % % zaczynamy od kolejki [wf:W. Zak³adamy ze od [1:wf)=? meczy sie odby³y ;
+
 
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R-1)*M;

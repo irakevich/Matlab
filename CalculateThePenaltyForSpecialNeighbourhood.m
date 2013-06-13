@@ -23,8 +23,11 @@ V1w=find(sum(Vwr,2)~=0);  %disp(sprintf('length(V1w) %g',length(V1w)));
                         HEwrz(w,r1,:) = tmpHE;
 
                         [Vnew] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr);
-                        cWRR(w,r1,r) = Vnew;
-
+                        if r1 < r
+                            cWRR(w,r,r1) = Vnew;
+                        else
+                            cWRR(w,r1,r) = Vnew;
+                        end;
                         Xwgr(w,:,r) = Xwgr(w,:,r1);
                         Xwgr(w,:,r1) = tmpX;
                         Ewrz(w,r1,:) = Ewrz(w,r,:);
