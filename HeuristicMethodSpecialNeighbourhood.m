@@ -4,7 +4,7 @@ function [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]=HeuristicMethodSpecialNeighbourhood(Xwgr
 global R
 global W
 global M
-
+%WRRS=zeros(1,3);
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;
@@ -12,7 +12,8 @@ p=1;
 disp('----HeuristicMethodSpecialNeighbourhood----');
 while(theEnd~=1)&&(V~=0)
     cWRR = ones(W,R,R)*M;%ones(W,R,R-1)*M;
-    krok=krok+1; disp(sprintf('k sn %g', krok) );
+    krok=krok+1;
+    %disp(sprintf('k sn %g', krok) );
     [Vwr, V1wr,V2wr, V3wr, V4wr, V5wr]=SpecialNeighbourhood_V5(Xwgr,Ewrz,HEwrz); %wf==1
     V1w=find(sum(Vwr,2)~=0);  %disp(sprintf('length(V1w) %g',length(V1w)));
     for iw=1:length(V1w);
@@ -51,17 +52,17 @@ while(theEnd~=1)&&(V~=0)
             end
         end
     end
-     disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
-
+    % disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
+ 
     %cWRR
     
-    if min(min(min(cWRR))) <V 
+    if min(min(min(cWRR))) <V %&& krok<=12
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
-         disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
+       %  disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
           WRRS(krok,:)=[wn,r1n,rn];
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
@@ -73,10 +74,10 @@ while(theEnd~=1)&&(V~=0)
         HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
         HEwrz(wn,r1n,:) = tmpHE;
               
-    else
+    else%if krok>12
         
-        CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz);   %nie jest potrzebne    
-      
+        %CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz);   %nie jest potrzebne    
+        
      %   [Vhm,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,0);%SN==0
       %  if Vhm<V 
        %     V=Vhm;
@@ -86,5 +87,5 @@ while(theEnd~=1)&&(V~=0)
         %end;
     end;    
 
-    disp(sprintf('Vend sn=  %g',V)); 
+  %  disp(sprintf('Vend sn=  %g',V)); 
 end;%while

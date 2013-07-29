@@ -1,5 +1,7 @@
 function [Mh,Ma]=UseMatrixes ()
 global Z
+global W
+global G
 
 
 Mh=ones(W/2,G);

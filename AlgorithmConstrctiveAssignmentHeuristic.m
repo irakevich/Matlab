@@ -98,13 +98,37 @@ for w=1:1:W
 
     % -- 2.2 Find an optimal assignment for the current stage 
  %   [c, y_L, y_U, b_L, b_U, a, sos1] = abc2gap( Arg', Br, Crg', true);
+   % b_L(isinf(b_L))=0;
+   % b_U(isinf(b_U))=0;
+    % min f'*y    subject to:   A*y <= b         
+    %A = [a; -a];
+    %b = [b_U; -b_L];
+    %disp(size(A));disp(size(b)); disp(size(b_L));disp(size(b_U));
+    %pause
+   % disp(full(A));  disp(full(b));pause
     [c, y_L, y_U, b_L, b_U, a] = superTomLab(Crg);
     b_L(isinf(b_L))=0;
     b_U(isinf(b_U))=0;
     % min f'*y    subject to:   A*y <= b         
     A = [a; -a];
     b = [b_U; -b_L];
-   % disp(full(A));  disp(full(b));pause
+   % disp(size(A1));disp(size(b1));disp(size(b_L1));disp(size(b_U1));
+   % find(A-A1~=0)
+    
+   % find(b-b1~=0)
+   % disp(full(b'));
+   % disp(full(b1'));
+    
+   % find(b_L-b_L1~=0)
+   % disp(full(b_L'));
+   % disp(full(b_L1'));
+    
+   % find(b_U-b_U1~=0)
+   % disp(full(b_U'));
+   % disp(full(b_U1'));
+   
+    %pause
+    %disp(full(A));  disp(full(b));pause
     %%%%%%[y, fVal]  = linprog(c, A, b, [], [], y_L, y_U);
     ctype = '';
     for j=1:1:(R+G)*2

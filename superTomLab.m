@@ -7,9 +7,9 @@ global R
    
     y_L = zeros(G*R,1);
     y_U = ones(G*R,1);
-    b_L = ones(G+R,1);
-    b_L(1:G,:) = 0;
-    b_U = ones(G+R,1);
+    b_L = ones(R+G,1);
+    b_L(1:R,:) = 0;
+    b_U = ones(R+G,1);
     
     tmp = Crg';
     c = tmp(:);

@@ -10,12 +10,12 @@ global M
 theEnd=0;
 
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
-
+disp('-----HeuristicMethod-------');
 krok=0;
 while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
     cWRR = ones(W,R,R-1)*M;
     krok=krok+1;
-    disp(sprintf('k g %g ',  krok) );
+   % disp(sprintf('k g %g ',  krok) );
   
     for w=1:W
         for r=1:R
@@ -47,15 +47,16 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
             end
         end
     end
-     disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
-       
+    % disp(sprintf('V= %g Vnew = %g',V,(min(min(min(cWRR))))));
+     %[wwn,rr1n,rrn]=find3d((min(min(min(cWRR))))==cWRR); %  disp(sprintf('bede przestawiac %g %g %g',wwn(1),rr1n(1),rrn(1)));  
     % cWRR
-     if min(min(min(cWRR))) <V 
+     if min(min(min(cWRR))) <V %&& krok<=12
         V=min(min(min(cWRR)));
         [wwn,rr1n,rrn]=find3d(V==cWRR);
         wn=wwn(1);
         r1n=rr1n(1);
         rn=rrn(1);
+      %   disp(sprintf('%g %g %g',wwn(1),rr1n(1),rrn(1)));
         WRRG(krok,:)=[wn,r1n,rn];
         tmpX = Xwgr(wn,:,r1n);
         Xwgr(wn,:,r1n) = Xwgr(wn,:,rn);
@@ -66,11 +67,11 @@ while(theEnd~=1)&&(V~=0)&& (SN~=1) %SN==1-> raz petla siê wykona³a
         tmpHE = HEwrz(wn,rn,:);
         HEwrz(wn,rn,:) = HEwrz(wn,r1n,:);
         HEwrz(wn,r1n,:) = tmpHE;
-     else
-                    
+     else%if krok>12
+        % CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz);   %nie jest potrzebne              
         theEnd=1;
     end;    
 SN=SN+1; %SN==1-> raz petla siê wykona³a
-disp(sprintf('Vend General %g',V)); 
+%disp(sprintf('Vend General %g',V)); 
 
 end;%while

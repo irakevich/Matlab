@@ -46,7 +46,7 @@ wf=1; C6wr=zeros(W,R);
 cup=1;
 if (cup==1)
         disp('----------------- Set the punishment CUP ---------------------------------------------');
-        [wf,C6wr]=SetPunishment();
+        [wf,C6wr]=SetPunishment()
 
         disp ('-----HeuristicMethodNew----');
         [VhmCup]=CalculateTheCostOfAllAssignment(Xwgrhm,Ewrzhm,HEwrzhm,C6wr);

@@ -62,10 +62,11 @@ V5wr=zeros(W,R);
    % V5old=sum(sum(sum( max( Xwgr(1:W/2,:,:)+Xwgr(W/2+1:W,:,:)-1,0),1),2),3);
     V5=0;
     for i=1:W/2
-        V5r=sum(max( Xwgr(i,:,:)+Xwgr(i+W/2,:,:)-1,0),2); %sum po 2
+        V5r=squeeze(sum(max( Xwgr(i,:,:)+Xwgr(i+W/2,:,:)-1,0),2)); %sum po 2
         V5next=sum(sum(V5r,1),2);
         if V5next>0
             V5wr(i,:)=V5r;
+            
         end;
         V5=V5+V5next;
     end;    

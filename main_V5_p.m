@@ -1,4 +1,4 @@
-function [cWRR] = main_V5_p (XwgrOr, EwrzOr,HEwrzOr)
+function  [Xwgrhm,Xwgr,H] =main_V5_p (XwgrOr, EwrzOr,HEwrzOr)
 
 global Z
 global R
@@ -12,7 +12,7 @@ global S
 
 
 
-
+Vsl=-100;
 V=-100;
 Vhm=-100;
 if exist('startup','file') ~= 2 
@@ -29,24 +29,65 @@ SetTheParameters();
 tic
  %   [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
     %[XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=Random(Hwgz,Awgz);
-    [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr)
+    [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr);
+    CalculateTheCostOfAllAssignmentVVVVV_V5(XwgrOr,EwrzOr,HEwrzOr);
 toc
+if (find(squeeze(sum(XwgrOr(:,:,:),3))~=1)>0) 
+    squeeze(sum(XwgrOr(:,:,:),3)) 
+end;
+if (find(squeeze(sum(XwgrOr(:,:,:),2))>1)>0)
+    squeeze(sum(XwgrOr(:,:,:),2))
+end;    
+draw=5;
+H=zeros(draw,7);
+
+for j=1:draw
+H(j,3)=VOr;
+
+tic
+    [L]=ListBasedTresholdAccepting(XwgrOr,EwrzOr,HEwrzOr);
+    length(L)
+    [Vsl,Xwgrsl,Ewrzsl,HEwrzsl,N]=HeuristicMethod_V5_SL(XwgrOr,EwrzOr,HEwrzOr,VOr,L);
+    if (find(squeeze(sum(Xwgrsl(:,:,:),3))~=1)>0) 
+        squeeze(sum(Xwgrsl(:,:,:),3)) 
+    end;
+    if (find(squeeze(sum(Xwgrsl(:,:,:),2))>1)>0)
+        squeeze(sum(Xwgrsl(:,:,:),2))
+    end;   
+    H(j,4)=Vsl;
+    H(j,5)=length(L);
+    H(j,6)=N;
+    
+time=toc;
+H(j,7)=time;
+Xwgrhm = [];
 
 tic
     [Vhm,cWRRhm, Xwgrhm,Ewrzhm,HEwrzhm,WRRG]=HeuristicMethod(XwgrOr,EwrzOr,HEwrzOr,VOr,2);%SN=2
-    
+    if (find(squeeze(sum(Xwgrhm(:,:,:),3))~=1)>0) 
+        squeeze(sum(Xwgrhm(:,:,:),3)) 
+    end;
+    if (find(squeeze(sum(Xwgrhm(:,:,:),2))>1)>0)
+        squeeze(sum(Xwgrhm(:,:,:),2))
+    end;   
+    H(j,1)=Vhm;
 toc
 cWRR = [];
+Xwgr = [];
 tic 
-    [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]= HeuristicMethodSpecialNeighbourhood(XwgrOr,EwrzOr,HEwrzOr,VOr);  
-    
+    [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]= HeuristicMethodSpecialNeighbourhood(XwgrOr,EwrzOr,HEwrzOr,VOr);
+    if (find(squeeze(sum(Xwgr(:,:,:),3))~=1)>0) 
+        squeeze(sum(Xwgr(:,:,:),3)) 
+    end;
+    if (find(squeeze(sum(Xwgr(:,:,:),2))>1)>0)
+        squeeze(sum(Xwgr(:,:,:),2))
+    end;   
+    H(j,2)=V;
 toc
 
-VOr
-Vhm
-CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgrhm,Ewrzhm,HEwrzhm)
-WRRG
-V
-CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz)
-WRRS
+
+end;
+
+
+
 

@@ -42,9 +42,9 @@ C6wr =[
 ];
 end;
 C6wr=zeros(W,R);
-wf=ceil( (W-1)*rand(1,1) );% wf=W/2-1;
-j=ceil((W-wf)*rand());
-ww=wf+ceil((W-wf)*rand(1,j));%ww=wf+2;
+wf=ceil( (W-1)*rand(1,1) )% wf=W/2-1;
+j=ceil((W-wf-1)*rand())
+ww=wf+ceil((W-wf-1)*rand(1,j))%ww=wf+2;
 minus=R-G;
 for i=1:length(ww)
     pause=randperm(R);
