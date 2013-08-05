@@ -1,11 +1,11 @@
-function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest,N]=HeuristicMethod_V5_SL(Xwgr,Ewrz,HEwrz,V,L)
+function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest,N]=HeuristicMethod_V5_SL(Xwgr,Ewrz,HEwrz,V,L,N)
 
 
 global R 
 global W
 
-n=1+ceil(3*rand(1,1));
-N=round(length(L)/7.2);%round(length(L)/n);
+%n=1+ceil(3*rand(1,1));
+%N=round(length(L)/n);%round(length(L)/7.2);
 i=0;
 Vbest=V;
 Xwgrbest=Xwgr;

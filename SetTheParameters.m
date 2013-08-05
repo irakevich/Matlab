@@ -20,8 +20,8 @@ R=18;%R - number of referees
 Lr=zeros(R,1);
 %Lr(1,1)=17;Lr(2)=17;%Lr(3)=17;Lr(4)=17;
 S=4; %odleglosc (w kolejkach) miedzy dwoma meczami  
-Oa=3; 
-Oh=2;
+Oa=2; 
+Oh=1;
 
 
 

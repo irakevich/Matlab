@@ -1,10 +1,11 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz,WRRS]=HeuristicMethodSpecialNeighbourhood(Xwgr,Ewrz,HEwrz,V)
+function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhood(Xwgr,Ewrz,HEwrz,V)
 
 
 global R
 global W
 global M
 %WRRS=zeros(1,3);
+
 theEnd=0;
 cWRR=zeros(W,R,R);%  jasne ze 4(ostatni) z 4(ostatni) nie bedzie mia³ zamiany
 krok=0;

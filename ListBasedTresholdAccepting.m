@@ -1,4 +1,4 @@
-function [L]=ListBasedTresholdAccepting(Xwgr,Ewrz,HEwrz)
+function [L]=ListBasedTresholdAccepting(Xwgr,Ewrz,HEwrz,l)
 
 global W
 global R
@@ -7,7 +7,7 @@ a=round(W*G*R/3);
 %if W*G*R<a
  %   a=W*G*R;
 %end;   
-l=a;%960%a+ceil(a/2*rand(1,1));%720
+%l=a/2;%960%a+ceil(a/2*rand(1,1));%720
 L=zeros(1,l);
 
 
