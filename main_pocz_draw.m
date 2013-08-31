@@ -1,4 +1,4 @@
-clear all;
+clearvars -except sroa2 sroa3;
 
 global Z
 global R
@@ -26,12 +26,12 @@ end;
 
 draw=20;
 Vpocz=zeros(draw,6);
-
+SetTheParameters();
+[Hwgz,Awgz]=GenerateMatrixes (1); %generate==1
 i=1;
 while i<=draw 
 i
-SetTheParameters();
-[Hwgz,Awgz]=GenerateMatrixes (1); %generate==1
+
 tic
 [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
 time=toc;

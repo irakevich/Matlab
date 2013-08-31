@@ -9,7 +9,7 @@ V1w=find(sum(Vwr,2)~=0);  %disp(sprintf('length(V1w) %g',length(V1w)));
         V1r=find(Vwr(w,:)~=0); %disp(sprintf('length(V1r) %g',length(V1r)));
         for ir=1:length(V1r)
             r=V1r(ir);
-            for r1 = r+1:R
+             for r1 = 1:R %for r1 = r+1:R
                 if r ~= r1
                     if sum(Xwgr(w,:,r),2)+sum(Xwgr(w,:,r1),2) > 0
                         tmpX = Xwgr(w,:,r1);

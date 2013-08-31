@@ -1,4 +1,4 @@
-function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhood(Xwgr,Ewrz,HEwrz,V)
+function [V,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethodSpecialNeighbourhood_testowa(Xwgr,Ewrz,HEwrz,V)
 
 
 global R
@@ -26,6 +26,12 @@ while(theEnd~=1)&&(V~=0)
             for r1 = 1:R%r+1:R
                 if r ~= r1
                     if sum(Xwgr(w,:,r),2)+sum(Xwgr(w,:,r1),2) > 0
+if krok == 4 && r1 == 33
+    tak = 1;
+else
+    tak = 0;
+end
+
                         tmpX = Xwgr(w,:,r1);
                         Xwgr(w,:,r1) = Xwgr(w,:,r);
                         Xwgr(w,:,r) = tmpX;
@@ -36,14 +42,21 @@ while(theEnd~=1)&&(V~=0)
                         HEwrz(w,r,:) = HEwrz(w,r1,:);
                         HEwrz(w,r1,:) = tmpHE;
 
-                        [Vnew] = CalculateTheCostOfAllAssignment_V5(Xwgr,Ewrz,HEwrz);
-                      
+                        [Vnew] = suuuuuuuuuuuuuperd(Xwgr,Ewrz,HEwrz, tak);
+                        if krok == 4 && r1 == 33
+                            disp(sprintf('w %g r %g r1 %g ----> Vold %g Vnew %g', w, r,  r1, V, Vnew));
+                        end; 
+                        
                         if r1 < r
                             cWRR(w,r,r1) = Vnew;
-                            
+                            if krok == 4 && r1 == 33
+                            disp(sprintf('VVVV %g', cWRR(w,r,r1)));
+                            end;
                         else
                             cWRR(w,r1,r) = Vnew;
-                            
+                            if krok == 4 && r1 == 33
+                            disp(sprintf('VVVV %g', cWRR(w,r1,r)));
+                            end;
                         end
                         
                         Xwgr(w,:,r) = Xwgr(w,:,r1);
@@ -80,6 +93,17 @@ while(theEnd~=1)&&(V~=0)
               
     else%if krok>12
        
+        [V1R]=CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz);   %nie jest potrzebne  
+        [a]=find(V1R>0);
+%        for k=1:length(a)
+%        squeeze(cWRR(:,a(k),a(k)))
+%        end;
+        disp('tttuuuuuuuuuuuuuuuuu');
+        tomekTMP=squeeze( sum(Vwr,1));
+        tomekTMP
+        find(Vwr(w,:)~=0)
+        krok
+        
         
         %   [Vhm,cWRR, Xwgr,Ewrz,HEwrz]=HeuristicMethod(Xwgr,Ewrz,HEwrz,V,0);%SN==0
       %  if Vhm<V 

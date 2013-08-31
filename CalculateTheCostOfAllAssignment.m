@@ -1,5 +1,5 @@
-    function [V]=CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr)
-       
+function [V]=CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr)
+% wyliczamy kare za niespe³nienie miêkkich ograniczeñ V1 V2 V3 V4 V5 i V6       
 
 global Lr
 global Oa

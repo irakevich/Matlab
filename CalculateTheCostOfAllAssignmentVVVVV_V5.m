@@ -1,4 +1,4 @@
- function CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz)
+ function [V1R]=CalculateTheCostOfAllAssignmentVVVVV_V5(Xwgr,Ewrz,HEwrz)
  
  
 global Lr
@@ -11,8 +11,10 @@ global R
 
  % -- V1
     V1 = 0;
+    V1R = zeros(1,R);
     for i = 1:W-1
-        V1 =  sum(sum(sum(Ewrz(i,:,:).*sum(Ewrz(i+1:min(i+S-1,W),:,:),1),1),2),3);
+        V1 = V1+ sum(sum(sum(Ewrz(i,:,:).*sum(Ewrz(i+1:min(i+S-1,W),:,:),1),1),2),3);
+        V1R = V1R + squeeze(sum(sum(Ewrz(i,:,:).*sum(Ewrz(i+1:min(i+S-1,W),:,:),1),1),3));
     end;
     
  % -- V2 
@@ -38,4 +40,4 @@ global R
     
     
     disp(sprintf('V =%g %g %g %g %g %g',V1,V2,V3,V4,V5));
- 
+    

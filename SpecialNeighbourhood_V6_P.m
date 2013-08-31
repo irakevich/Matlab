@@ -1,5 +1,9 @@
-function [Vwr]=SpecialNeighbourhood(Xwgr,Ewrz,HEwrz,wf,C6wr)
+function [Vwr]=SpecialNeighbourhood_V6_P(Xwgr,Ewrz,HEwrz,wf,C6wr)
+%	definiujemy C6wr, wykorzystuj¹c wybrany algorytm szukamy najlepszego uszeregowania sêdziów, zak³adaj¹c, ¿e ¿adne spotkanie jeszcze siê nie odby³o.
+%do sasiedztwa trafia ca³y wektor s¹siedztwa Vwr, gdyz zadne spotkanie
+%jeszcze sie nie odby³o
 
+% P -> mo¿emy modyfikowaæ obsadê we wszystkich kolejkach.
 global W
 global R
 global S
@@ -75,10 +79,10 @@ V6wr=zeros(W,R);
    V6wr=squeeze(sum(Xwgr,2)).*C6wr;
    Vwr=V1wr+V2wr+V3wr+V4wr+V5wr+V6wr;
    
-   if wf>1
-       pom=zeros(wf-1,R);
-     Vwr=[pom;Vwr(wf:W,1:R)];
-   end;
+ %  if wf>1
+ %      pom=zeros(wf-1,R);
+ %    Vwr=[pom;Vwr(wf:W,1:R)];
+ %  end;
     
   
     

@@ -1,5 +1,6 @@
-function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest]=HeuristicMethod_V5_SL(Xwgr,Ewrz,HEwrz,V,L,N)
+function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest]=HeuristicMethod_V5_SLNEW(Xwgr,Ewrz,HEwrz,V,L,N)
 
+% if Vv>=V ,  oryginal if Vv>V 
 
 global R 
 global W
@@ -13,7 +14,7 @@ Ewrzbest=Ewrz;
 HEwrzbest=HEwrz;
 krok=0;
 z=0;
-disp('-----HeuristicMethod_SL-------');
+disp('-----HeuristicMethod_SL_NEW-------');
 while (i<N) &&( Vbest~=0)
     krok=krok+1;
     %disp(sprintf('while i= %g',i));
@@ -40,9 +41,9 @@ while (i<N) &&( Vbest~=0)
     
         maxL=max(L);
             
-        if Vv>V 
+        if Vv>=V % oryginal if Vv>V 
           %  disp('if Vv>V');
-           if Vv-V<maxL %zmien delta
+           if Vv-V<maxL % oryginal if Vv-V<maxL %zmien delta
                 delta=Vv-V;
                 idx=find(L==maxL);
                 L(idx(1,1))=delta;

@@ -1,6 +1,7 @@
-function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest]=HeuristicMethod_V5_SL(Xwgr,Ewrz,HEwrz,V,L,N)
+function [Vbest,Xwgrbest,Ewrzbest,HEwrzbest]=HeuristicMethod_V6_SL_NEW_P(Xwgr,Ewrz,HEwrz,V,L,N,wf,C6wr)
 
-
+% if Vv>=V ,  oryginal if Vv>V 
+% P -> mo¿emy modyfikowaæ obsadê we wszystkich kolejkach.
 global R 
 global W
 
@@ -14,10 +15,10 @@ HEwrzbest=HEwrz;
 krok=0;
 z=0;
 disp('-----HeuristicMethod_SL-------');
-while (i<N) &&( Vbest~=0)
+while (i<N) &&( Vbest~=0) && (krok<500000)
     krok=krok+1;
     %disp(sprintf('while i= %g',i));
-    w=ceil(W*rand(1,1));
+    w=ceil((W)*rand(1,1));
     r=ceil(R*rand(1,1));
     r1=ceil((R-1)*rand(1,1));
     if (r==r1)
@@ -35,12 +36,12 @@ while (i<N) &&( Vbest~=0)
         HEwrz(w,r,:) = HEwrz(w,r1,:);
         HEwrz(w,r1,:) = tmpHE;
         
-        [Vv] = CalculateTheCostOfAllAssignment_V5(Xwgr,Ewrz,HEwrz);
+        [Vv] = CalculateTheCostOfAllAssignment(Xwgr,Ewrz,HEwrz,C6wr);
         %disp (sprintf ('V %g   Vv %g   Vb %g' ,V,Vv,Vbest));
     
         maxL=max(L);
             
-        if Vv>V 
+        if Vv>=V 
           %  disp('if Vv>V');
            if Vv-V<maxL %zmien delta
                 delta=Vv-V;
@@ -77,5 +78,8 @@ while (i<N) &&( Vbest~=0)
     end;
     
 end;%while    
-
+if krok>=500000
+    disp('UWAGA !!!!!');disp(krok);
+    pause
+end;    
 disp(sprintf('V= %g Vbest = %g  krok = %g z = %g i = %g',V,Vbest, krok, z, i));

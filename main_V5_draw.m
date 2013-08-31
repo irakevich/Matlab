@@ -1,4 +1,4 @@
-clearvars -except sroa2old sroa3old;
+clearvars -except sroa2 sroa3;
 
 global Z
 global R
@@ -22,27 +22,27 @@ if exist('glpk','file') ~= 2
     addpath glpkmex-2.11-src\glpkmex\
 end;
 
-draw=100;
+draw=50;
 Vhistory=zeros(draw,6);
 VhistoryR=zeros(draw,5);
 i=1;
 SetTheParameters();
-S=1;
+s=1;Oa=3;Oh=1;R=12;
 while i<=draw 
    
     if (i==51)
-       Oa=3;
+       s=1;Oa=3;Oh=2;R=10;
     end;    
-    S=S+1;
+    R=R+1; Lr=zeros(R,1);
   
    if (mod(i,10)==1)
-        S=1;
+        R=10; Lr=zeros(R,1);
         %disp('--------------------- start  -----------------------------');
         [Hwgz,Awgz]=GenerateMatrixes (1); 
         
     end;
     i
-    S
+   R
 %disp('------------------------not random--------------------------');
 [XwgrOr, EwrzOr,HEwrzOr,CwgrOr,CwrgOr]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz);
 [VOr]=CalculateTheCostOfAllAssignment_V5(XwgrOr,EwrzOr,HEwrzOr);
@@ -52,7 +52,7 @@ while i<=draw
 %Vhistory(i,2)=Vhm;
 %Vhistory(i,3)=time;
 Vhistory(i,1)=VOr;
-Vhistory(i,6)=S;
+Vhistory(i,6)=R;
 
 tic 
     [V,cWRR, Xwgr,Ewrz,HEwrz]= HeuristicMethodSpecialNeighbourhood(XwgrOr,EwrzOr,HEwrzOr,VOr);  

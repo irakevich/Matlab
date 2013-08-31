@@ -12,7 +12,7 @@ global R
  % -- V1
     V1 = 0;
     for i = 1:W-1
-        V1 =  sum(sum(sum(Ewrz(i,:,:).*sum(Ewrz(i+1:min(i+S-1,W),:,:),1),1),2),3);
+        V1 = V1+ sum(sum(sum(Ewrz(i,:,:).*sum(Ewrz(i+1:min(i+S-1,W),:,:),1),1),2),3);
     end;
     
  % -- V2 

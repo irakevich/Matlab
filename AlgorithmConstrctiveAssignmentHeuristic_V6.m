@@ -1,5 +1,5 @@
-function [Xwgr, Ewrz,HEwrz,Cwgr,Cwrg]=AlgorithmConstrctiveAssignmentHeuristic(Hwgz,Awgz)
-% wyznaczamy rozwi¹zanie pocz¹tkowe bior¹c pod uwagê V1,V2,V3,V4,V5
+function [Xwgr, Ewrz,HEwrz,Cwgr,Cwrg]=AlgorithmConstrctiveAssignmentHeuristic_V6(Hwgz,Awgz,C6wr,wf)
+% wyznaczamy rozwi¹zanie pocz¹tkowe bior¹c pod uwagê V1,V2,V3,V4,V5 i V6
 global Z
 global R
 global W
@@ -27,6 +27,10 @@ for w=1:1:W
 % --  2.1 Calculate the cost of asigment for each referee and game
  %--- 2.1.2 Calculate the V
     % -- V1
+    XwgrV6=zeros(W,G,R);
+    XwgrV6=Xwgr;
+    XwgrV6(w,:,:)=XwgrV6(w,:,:)+1;
+    
     minId = max(1, w-(S+1)); %interesuje nas wycinek o dlugosci s, gdzie ostatni element to potencjalna decyzja, wiec w-(s+1)
     for r = 1:1:R
 %                disp('--- r ---');disp(r);
@@ -83,8 +87,15 @@ for w=1:1:W
             end;
             %disp('V5');disp(V5);
             %Crg(r,g) = V4 ;
-
-            Crg(r,g)=V1Ira+V2+V3+V5;
+        
+         if w>=wf
+             
+            V6=sum(sum(squeeze(sum(XwgrV6(:,g,r),2)).*C6wr(:,r) *1000,1),2); 
+         else
+             V6=0;
+         end;
+            
+            Crg(r,g)=V1Ira+V2+V3+V5+V6;
         end
          % --V4
         V4=max(Lr(r,1)-(sum(sum(Xwgr(:,:,r),1),2)+1),0);
@@ -93,6 +104,8 @@ for w=1:1:W
                 V4 = V4 + max(Lr(r1,1)-(sum(sum(Xwgr(:,:,r1),1),2)),0);
             end;
         end 
+        
+        
         Crg(r,:)=Crg(r,:)+V4;
     end
 
